@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.VBox?>
+<VBox minHeight="320.0" minWidth="240.0" stylesheets="@../css/main.css" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.MainWindowController">
+
+    <MenuBar VBox.vgrow="NEVER">
+        <Menu mnemonicParsing="false" text="File">
+            <MenuItem mnemonicParsing="false" onAction="#onQuit" text="Quit"/>
+        </Menu>
+    </MenuBar>
+
+</VBox>

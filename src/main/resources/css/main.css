@@ -1,0 +1,387 @@
+/*Colors are defined here. Color palette is from https://coolors.co/050301-f7f7ff-96031a-279af1*/
+.root{
+
+    -fx-background-color: background-color;
+
+    /*black-ish*/
+    text-color: #050301;
+    text-color-disabled: #B8B8B8;
+    border-color: #e6e6e6;
+
+    /*white-ish*/
+    background-color: #fdfeff;
+
+    menu-color: #e4e5e6;
+    menu-background-color: background-color;
+    menu-highlight-color: #cacbcc;
+
+    /*color*/
+    call-to-action-color: #279af1;
+    accent-color: #666666;
+
+    min-width: 20;
+    min-height: 20;
+    no-min-value: -1;
+    no-max-value: -1
+}
+
+.label{
+    /*from parent Labeled*/
+    -fx-alignment: center-left;
+    -fx-text-alignment: left;
+    -fx-text-overrun: ellipsis;
+    -fx-wrap-text: true;
+    /*-fx-font: use default*/
+    -fx-underline: false;
+    -fx-graphic: null;
+    -fx-content-display: left;
+    -fx-graphic-text-gap: 4;
+    -fx-label-padding: 0 0 0 0;
+    -fx-text-fill: text-color;
+    -fx-ellipsis-string: '...';
+
+    /*from parent Control*/
+    -fx-skin: null;
+    -fx-focus-traversable: false;
+
+    /*from parent Region*/
+    /*BACKGROUND FILLS*/
+    -fx-background-color: background-color;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0 0 0 0;
+    /*BACKGROUND IMAGES*/
+    -fx-background-image: null;
+    -fx-background-position: 0%;
+    -fx-background-repeat: repeat;
+    -fx-background-size: auto;
+    /*BORDER IMAGES*/
+    -fx-border-color: null;
+    -fx-border-insets: 0 0 0 0;
+    -fx-border-radius: 0 0 0 0;
+    -fx-border-style: null;
+    -fx-border-width: null;
+    -fx-border-image-source: null;
+    -fx-border-image-insets: 0 0 0 0;
+    -fx-border-image-repeat: repeat;
+    -fx-border-image-slice: 100%;
+    -fx-border-image-width: 0;
+    /*OTHER*/
+    -fx-padding: 2 2 2 2;
+    -fx-position-shape: true;
+    -fx-scale-shape: true;
+    -fx-shape: null;
+    -fx-snap-to-pixel: true;
+    -fx-min-height: min-height;
+    -fx-pref-height: no-min-value;
+    -fx-max-height: no-max-value;
+    -fx-min-width: min-width;
+    -fx-pref-width: no-min-value;
+    -fx-max-width: no-max-value;
+
+    /*from parent Parent*/
+    /*empty by default*/
+
+    /*from parent Node*/
+    -fx-blend-mode: null;
+    -fx-cursor: null;
+    -fx-effect: null;
+    /*-fx-focus-traversable: 'false';*/
+    -fx-view-order: 0;
+    -fx-opacity: 1.0;
+    -fx-rotate: 0;
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-scale-z: 1;
+    -fx-translate-x: 0;
+    -fx-translate-y: 0;
+    -fx-translate-z: 0;
+    visibility: true;
+}
+.label:disabled{
+    -fx-text-fill: text-color-disabled;
+}
+
+.button{
+    /*from parent Labeled*/
+    -fx-alignment: center-left;
+    -fx-text-alignment: left;
+    -fx-text-overrun: ellipsis;
+    -fx-wrap-text: true;
+    /*-fx-font: use default*/
+    -fx-underline: false;
+    -fx-graphic: null;
+    -fx-content-display: left;
+    -fx-graphic-text-gap: 4;
+    -fx-label-padding: 0 0 0 0;
+    -fx-text-fill: text-color;
+    -fx-ellipsis-string: '...';
+
+    /*from parent Control*/
+    -fx-skin: null;
+    -fx-focus-traversable: false;
+
+    /*from parent Region*/
+    /*BACKGROUND FILLS*/
+    -fx-background-color: derive(background-color,-4%);
+    -fx-background-insets: 0;
+    -fx-background-radius: 0 0 0 0;
+    /*BACKGROUND IMAGES*/
+    -fx-background-image: null;
+    -fx-background-position: 0%;
+    -fx-background-repeat: repeat;
+    -fx-background-size: auto;
+    /*BORDER IMAGES*/
+    -fx-border-color: border-color;
+    -fx-border-insets: 0 0 0 0;
+    -fx-border-radius: 0 0 0 0;
+    -fx-border-style: null;
+    -fx-border-width: null;
+    -fx-border-image-source: null;
+    -fx-border-image-insets: 0 0 0 0;
+    -fx-border-image-repeat: repeat;
+    -fx-border-image-slice: 100%;
+    -fx-border-image-width: 0;
+    /*OTHER*/
+    -fx-padding: 2 2 2 2;
+    -fx-position-shape: true;
+    -fx-scale-shape: true;
+    -fx-shape: null;
+    -fx-snap-to-pixel: true;
+    -fx-min-height: min-width;
+    -fx-pref-height: no-min-value;
+    -fx-max-height: no-max-value;
+    -fx-min-width: min-width;
+    -fx-pref-width: no-min-value;
+    -fx-max-width: no-max-value;
+
+    /*from parent Parent*/
+    /*empty by default*/
+
+    /*from parent Node*/
+    -fx-blend-mode: null;
+    -fx-cursor: null;
+    -fx-effect: dropshadow(gaussian, border-color, 2, 0.4, 1, 1);
+    /*-fx-focus-traversable: 'false';*/
+    -fx-view-order: 0;
+    -fx-opacity: 1.0;
+    -fx-rotate: 0;
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-scale-z: 1;
+    -fx-translate-x: 0;
+    -fx-translate-y: 0;
+    -fx-translate-z: 0;
+    visibility: true;
+}
+.button:cancel{}
+.button:default{}
+.button:focused{
+    -fx-background-color: derive(background-color,10%);
+}
+.button:hover{
+    -fx-background-color: derive(background-color,-10%);
+    -fx-border-color: derive(border-color,-10%);
+}
+.button:armed{
+    -fx-background-color: derive(background-color,-20%);
+}
+
+/* MENU BAR + Top-level MENU BUTTONS */
+/*** The menu bar itself ***/
+.menu-bar{
+    -fx-background-color: menu-color;
+}
+.menu-bar .container{
+    -fx-background-color: menu-color;
+}
+.menu-bar .container > .menu{
+    -fx-background-color: menu-color;
+}
+.menu-bar .container .menu:hover{
+    -fx-background-color: menu-highlight-color;
+}
+.menu-bar .container > .menu > .label{
+    -fx-background-color: menu-color;
+}
+.menu-bar .container .menu:hover > .label{
+    -fx-background-color: menu-highlight-color;
+}
+.menu-bar .container .menu .arrow-button{
+    visible:false;
+}
+/*** Top-level menu itself (not selected / hovered) ***/
+.menu-bar > .container > .menu-button,
+.menu-bar > .container > .menu-button:showing{
+    /*nothing to change atm; */
+}
+/*** Top-level menu's label (not selected / hovered) ***/
+.menu-bar > .container > .menu-button > .label {
+    /*nothing to change atm; */
+}
+/*** Top-level menu itself (selected / hovered) ***/
+.menu-bar > .container > .menu-button:hover,
+.menu-bar > .container > .menu-button:focused,
+.menu-bar > .container > .menu-button:showing {
+    /*nothing to change atm; */
+}
+/*** Top-level menu's label (selected / hovered) ***/
+.menu-bar > .container > .menu-button:hover > .label,
+.menu-bar > .container > .menu-button:focused > .label,
+.menu-bar > .container > .menu-button:showing > .label {
+    /*nothing to change atm; */
+}
+
+/* MENU ITEM (children of a MENU BUTTON) */
+/*** The item itself (not hovered / focused) ***/
+.menu-item{
+    -fx-background-color: menu-background-color;
+}
+/*** The item itself (hovered / focused) ***/
+.menu-item:focused,
+.menu-item:hovered {
+     -fx-background-color: menu-highlight-color;
+ }
+ /*** The item's label (not hovered / focused) ***/
+.menu-item .label {
+     -fx-text-fill: text-color;
+     -fx-background-color: menu-background-color;
+}
+ /*** The item's label (disabled) ***/
+.menu-item .label:disabled {
+     -fx-opacity: 1.0;
+}
+ /*** The item's label (hovered / focused) ***/
+.menu-item:focused .label,
+.menu-item:hovered .label {
+     /*nothing to change atm; */
+     -fx-text-fill: text-color;
+     -fx-background-color: menu-highlight-color;
+}
+
+ /* CONTEXT MENU */
+ /*** The context menu that contains a menu's menu items ***/
+.context-menu {
+     -fx-background-color: menu-background-color;
+}
+
+/******************************************************************************
+ *** ProgressBar                                                            ***
+ *****************************************************************************/
+.progress-bar {
+    -fx-indeterminate-bar-length: 60;
+    -fx-indeterminate-bar-escape: true;
+    -fx-indeterminate-bar-flip: true;
+    -fx-indeterminate-bar-animation-time: 2.0;
+}
+.progress-bar > .bar {
+    -fx-background-color: linear-gradient(to bottom, derive(accent-color, -7%), derive(accent-color, 0%), derive(accent-color, -3%), derive(accent-color, -9%) );
+    -fx-background-insets: 1 1 2 1;
+    -fx-background-radius: 1;
+    -fx-padding: 8;
+}
+.progress-bar:indeterminate > .bar {
+    -fx-background-color: linear-gradient(to left, transparent, accent-color);
+}
+.progress-bar > .track {
+      -fx-background-color:
+          -fx-shadow-highlight-color,
+          linear-gradient(to bottom, derive(border-color, -10%), border-color),
+          linear-gradient(to bottom,
+            derive(background-color, -7%),
+            derive(background-color, 0%),
+            derive(background-color, -3%),
+            derive(background-color, -9%)
+          );
+    -fx-background-insets: 0, 0 0 1 0, 1 1 2 1;
+    -fx-background-radius: 0;
+}
+
+/******************************************************************************
+ *** ProgressIndicator                                                      ***
+ *****************************************************************************/
+.progress-indicator {
+    -fx-indeterminate-segment-count: 12;
+    -fx-spin-enabled: true;
+}
+.progress-indicator > .determinate-indicator > .indicator {
+    -fx-background-color: background-color,
+        radial-gradient(center 50% 50%, radius 50%, background-color 70%, derive(background-color, -9%) 100%),
+        background-color;
+    -fx-background-insets: 0, 1, 2 2 2 2;
+    -fx-padding: 0.166667em; /* 2px */
+}
+.progress-indicator > .determinate-indicator > .progress {
+    -fx-background-color: accent-color;
+    -fx-padding: 0.083333em; /* 1px */
+}
+.progress-indicator > .determinate-indicator > .tick {
+    -fx-background-color: background-color;
+    -fx-background-insets: 0;
+    -fx-padding: 0.666667em; /* 8 */
+    -fx-shape: "M-0.25,6.083c0.843-0.758,4.583,4.833,5.75,4.833S14.5-1.5,15.917-0.917c1.292,0.532-8.75,17.083-10.5,17.083C3,16.167-1.083,6.833-0.25,6.083z";
+}
+.progress-indicator > .determinate-indicator > .percentage {
+    -fx-font-size: 0.916667em; /* 11pt - 1 less than the default font */
+    -fx-fill: text-color;
+}
+.progress-indicator:indeterminate > .spinner {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+.progress-indicator:indeterminate .segment {
+    -fx-background-color: accent-color;
+}
+.progress-indicator:indeterminate .segment0 {
+    -fx-shape:"M41.98 14.74 a3.5,3.5 0 1,1 0,1 Z";
+}
+.progress-indicator:indeterminate .segment1 {
+    -fx-shape:"M33.75 6.51 a3.5,3.5 0 1,1 0,1 Z";
+}
+.progress-indicator:indeterminate .segment2 {
+    -fx-shape:"M22.49 3.5 a3.5,3.5 0 1,1 0,1 Z";
+}
+.progress-indicator:indeterminate .segment3 {
+    -fx-shape:"M11.24 6.51 a3.5,3.5 0 1,1 0,1 Z";
+}
+.progress-indicator:indeterminate .segment4 {
+    -fx-shape:"M3.01 14.74 a3.5,3.5 0 1,1 0,1 Z";
+}
+.progress-indicator:indeterminate .segment5 {
+    -fx-shape:"M0.0 26.0 a3.5,3.5 0 1,1 0,1 Z";
+}
+.progress-indicator:indeterminate .segment6 {
+    -fx-shape:"M3.01 37.25 a3.5,3.5 0 1,1 0,1 Z";
+}
+.progress-indicator:indeterminate .segment7 {
+    -fx-shape:"M11.25 45.48 a3.5,3.5 0 1,1 0,1 Z";
+}
+.progress-indicator:indeterminate .segment8 {
+    -fx-shape:"M22.5 48.5 a3.5,3.5 0 1,1 0,1 Z";
+}
+.progress-indicator:indeterminate .segment9 {
+    -fx-shape:"M33.75 45.48 a3.5,3.5 0 1,1 0,1 Z";
+}
+.progress-indicator:indeterminate .segment10 {
+    -fx-shape:"M41.98 37.25 a3.5,3.5 0 1,1 0,1 Z";
+}
+.progress-indicator:indeterminate .segment11 {
+     -fx-shape:"M45.0 26.0 a3.5,3.5 0 1,1 0,1 Z";
+}
+
+/******************************************************************************
+ *** Custom Classes                                                         ***
+ *****************************************************************************/
+ /* Node on top of another node, e.g. a Label on top of an ImageView*/
+ .on-top-of-node{
+    -fx-background-color: derive(background-color, 50%);
+    -fx-opacity: 0.8;
+    -fx-padding: 4;
+    -fx-margin: 4 4 4 4 ;
+    -fx-background-radius: 2;
+    -fx-background-insets: 2;
+    -fx-border-width: 1;
+    -fx-border-color: border-color;
+    -fx-border-insets: 2;
+    -fx-border-radius: 2 2 2 2;
+ }
