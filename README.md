@@ -1,2 +1,2 @@
 # Hibernate Demo and Learning Application
-Application to demonstrate Hibernate capabilities and to learn using them.
+Application to demonstrate Hibernate capabilities and learn to use them.
