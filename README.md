@@ -1,2 +1,2 @@
-# Standard Java FX Application
-Template for a Java FX Application built with Gradle
+# Hibernate Demo and Learning Application
+Application to demonstrate Hibernate capabilities and to learn using them.
