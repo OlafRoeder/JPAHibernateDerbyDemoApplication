@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class Animal {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
     private Type type;
