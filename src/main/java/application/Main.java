@@ -26,13 +26,6 @@ public class Main extends Application {
     public void init() {
         logger.debug("initialize application");
         application = ApplicationFactory.createApplication(new DemoApplication());
-
-        JpaHibernateDemo jpaHibernateDemo = new JpaHibernateDemo();
-        jpaHibernateDemo.printDatabase();
-        jpaHibernateDemo.createAnimal();
-        jpaHibernateDemo.printDatabase();
-
-        jpaHibernateDemo.shutdown();
     }
 
     @Override
