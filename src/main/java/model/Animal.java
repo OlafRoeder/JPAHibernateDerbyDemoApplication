@@ -16,7 +16,7 @@ public class Animal {
     private long id;
 
     private Type type;
-    private String subtype;
-    private int weight;
+    private String name;
+    private int age;
 
 }

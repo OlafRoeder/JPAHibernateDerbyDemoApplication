@@ -61,8 +61,8 @@ public class AnimalDao {
 
         Animal animal = new Animal();
         animal.setType(Type.MAMMAL);
-        animal.setSubtype("Dog");
-        animal.setWeight(17);
+        animal.setName("Hannibal");
+        animal.setAge(7);
 
         entityManager.persist(animal);
         entityManager.getTransaction().commit();
@@ -77,9 +77,9 @@ public class AnimalDao {
 
         Animal animal = entityManager.find(Animal.class, 1L);
 
-        animal.setWeight(5);
+        animal.setAge(5);
         animal.setType(Type.BIRD);
-        animal.setSubtype("Penguin");
+        animal.setName("Pen Pen");
 
         entityManager.getTransaction().commit();
     }
