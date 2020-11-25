@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.DemoApplication;
+import model.AnimalApplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +25,7 @@ public class Main extends Application {
     @Override
     public void init() {
         logger.debug("initialize application");
-        application = ApplicationFactory.createApplication(new DemoApplication());
+        application = ApplicationFactory.createApplication(new AnimalApplication());
     }
 
     @Override

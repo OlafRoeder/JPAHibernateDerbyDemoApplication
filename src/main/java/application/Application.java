@@ -16,6 +16,7 @@ public class Application {
     }
 
     public void quit() {
+        applicationType.shutdown();
         Platform.exit();
     }
 
