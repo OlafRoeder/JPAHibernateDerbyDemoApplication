@@ -1,4 +1,4 @@
-package model.demo;
+package model;
 
 public enum Type {
 

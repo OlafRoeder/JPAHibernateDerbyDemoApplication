@@ -1,4 +1,4 @@
-package model.demo;
+package model;
 
 import application.ApplicationType;
 import org.slf4j.Logger;

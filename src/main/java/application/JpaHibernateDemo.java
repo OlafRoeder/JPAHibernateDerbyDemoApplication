@@ -1,7 +1,7 @@
 package application;
 
-import model.demo.Animal;
-import model.demo.Type;
+import model.Animal;
+import model.Type;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

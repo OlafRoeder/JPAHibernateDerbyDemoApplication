@@ -6,7 +6,7 @@
     <persistence-unit name="application-persistence-unit">
 
         <!-- List of classes that should be persisted -->
-        <class>model.demo.Animal</class>
+        <class>model.Animal</class>
 
         <properties>
 
