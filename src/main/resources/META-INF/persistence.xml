@@ -4,17 +4,28 @@
 
     <!-- Define persistence unit -->
     <persistence-unit name="application-persistence-unit">
+
+        <!-- List of classes that should be persisted -->
         <class>model.demo.Animal</class>
 
         <properties>
 
+            <!-- Hibernate specific properties -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSevenDialect"/>
+            <!-- set to true for debugging -->
+            <property name="hibernate.show_sql" value="false" />
+            <property name="hibernate.format_sql" value="false" />
 
+            <!-- Newer versions of Derby use the EmbeddedDriver per convention. Thus it is not necessary and even erroneous to specify the driver.-->
+            <!--<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />-->
+
+            <!-- Create the database everytime the application is run. Only use in dev/test, for production use 'none' -->
             <property name="javax.persistence.jdbc.url" value="jdbc:derby:animals.db;create=true" />
+            <property name="javax.persistence.schema-generation.database.action" value="create-drop"/>
+
             <property name="javax.persistence.jdbc.user" value="test" />
             <property name="javax.persistence.jdbc.password" value="test" />
 
-            <property name="javax.persistence.schema-generation.database.action" value="create-drop"/>
 
         </properties>
     </persistence-unit>

@@ -23,7 +23,8 @@ public class JpaHibernateDemo {
 
         /* init EntityManagerFactory and EntityManager*/
 
-        /* Configured via persistence.xml */
+        /* Configured via persistence.xml, an EntityManagerFactory is coupled to a persistence unit and responsible
+        to create an EntityManager. */
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(APPLICATION_PERSISTENCE_UNIT);
         entityManager = entityManagerFactory.createEntityManager();
     }
