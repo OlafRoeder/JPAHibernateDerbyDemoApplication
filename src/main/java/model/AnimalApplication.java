@@ -24,4 +24,9 @@ public class AnimalApplication implements ApplicationType {
     public void shutdown() {
         animalDao.shutdown();
     }
+
+    @Override
+    public void createAnimal(Type type, Integer age, String name) {
+        animalDao.createAnimal(type, age, name);
+    }
 }

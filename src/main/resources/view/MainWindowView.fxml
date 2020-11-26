@@ -13,30 +13,34 @@
     </MenuBar>
    <VBox spacing="8.0" VBox.vgrow="SOMETIMES">
       <padding>
-         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
       </padding>
       <VBox.margin>
-         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
       </VBox.margin>
-      <Label text="JPA Hibernate Derby Demo"/>
+      <Label text="JPA Hibernate Derby Demo" />
       <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="NEVER">
          <HBox prefHeight="100.0" prefWidth="200.0">
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0">
-               <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Name"/>
-               <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Age"/>
-               <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Species"/>
+               <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Name" />
+               <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Age" />
+               <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Species" />
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0">
-               <TextField fx:id="name"/>
-               <Spinner fx:id="age"/>
-               <ComboBox fx:id="type" prefWidth="150.0"/>
+               <TextField fx:id="name" />
+               <Spinner fx:id="age" >
+                  <valueFactory>
+                     <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="99"/>
+                  </valueFactory>
+               </Spinner>
+               <ComboBox fx:id="type" prefWidth="150.0" />
                <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                  <Button mnemonicParsing="false" text="Create"/>
+                  <Button mnemonicParsing="false" onAction="#onCreate" text="Create" />
                </HBox>
             </VBox>
          </HBox>
       </VBox>
-      <ListView prefHeight="200.0" prefWidth="200.0"/>
+      <ListView prefHeight="200.0" prefWidth="200.0" />
    </VBox>
 
 </VBox>

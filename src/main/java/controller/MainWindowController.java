@@ -29,10 +29,22 @@ public class MainWindowController extends VBox {
     @FXML
     private void initialize() {
         type.getItems().setAll(Type.values());
+        TextField value = age.editorProperty().getValue();
+        value.textProperty().set("1");
     }
 
     @FXML
     private void onQuit() {
         application.quit();
+    }
+
+    @FXML
+    private void onCreate(){
+
+        Type type = this.type.getSelectionModel().getSelectedItem();
+        Integer age = this.age.getValue();
+        String name = this.name.textProperty().get();
+
+        application.createAnimal(type, age, name);
     }
 }

@@ -57,7 +57,7 @@ public class AnimalDao {
      */
     public void createAnimal() {
 
-        entityManager.getTransaction().begin();
+        beginTransaction();
 
         Animal animal = new Animal();
         animal.setType(Type.MAMMAL);
@@ -65,7 +65,32 @@ public class AnimalDao {
         animal.setAge(7);
 
         entityManager.persist(animal);
-        entityManager.getTransaction().commit();
+        commitTransaction();
+    }
+
+    private void beginTransaction() {
+        entityManager.getTransaction().begin();
+    }
+
+    /**
+     * Demonstration of a simple persist with parameters.
+     * @param type {@link Type} of {@link Animal}
+     * @param age Age of {@link Animal}
+     * @param name Name of {@link Animal}
+     */
+    public void createAnimal(Type type, Integer age, String name) {
+
+        beginTransaction();
+
+        Animal animal = new Animal();
+        animal.setType(type);
+        animal.setAge(age);
+        animal.setName(name);
+
+        entityManager.persist(animal);
+
+        commitTransaction();
+
     }
 
     /**
@@ -73,7 +98,7 @@ public class AnimalDao {
      */
     public void updateAnimal() {
 
-        entityManager.getTransaction().begin();
+        beginTransaction();
 
         Animal animal = entityManager.find(Animal.class, 1L);
 
@@ -81,6 +106,10 @@ public class AnimalDao {
         animal.setType(Type.BIRD);
         animal.setName("Pen Pen");
 
+        commitTransaction();
+    }
+
+    private void commitTransaction() {
         entityManager.getTransaction().commit();
     }
 
@@ -89,13 +118,13 @@ public class AnimalDao {
      */
     public void deleteAnimal() {
 
-        entityManager.getTransaction().begin();
+        beginTransaction();
 
         Animal animal = entityManager.find(Animal.class, 1L);
 
         entityManager.remove(animal);
 
-        entityManager.getTransaction().commit();
+        commitTransaction();
     }
 
     /**
