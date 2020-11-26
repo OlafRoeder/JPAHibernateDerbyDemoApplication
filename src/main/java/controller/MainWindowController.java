@@ -1,12 +1,14 @@
 package controller;
 
 import application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 import lombok.NonNull;
+import model.Animal;
 import model.Type;
 
 public class MainWindowController extends VBox {
@@ -22,15 +24,43 @@ public class MainWindowController extends VBox {
     @FXML
     private ComboBox<Type> type;
 
+    @FXML
+    private ListView<Animal> list;
+
+    private final ObservableList<Animal> animals= FXCollections.observableArrayList();
+
     public MainWindowController(@NonNull Application application) {
         this.application = application;
     }
 
     @FXML
     private void initialize() {
+
         type.getItems().setAll(Type.values());
-        TextField value = age.editorProperty().getValue();
-        value.textProperty().set("1");
+
+        list.setCellFactory(new Callback<>() {
+
+            @Override
+            public ListCell<Animal> call(ListView<Animal> param) {
+                return new ListCell<>() {
+
+                    @Override
+                    protected void updateItem(Animal item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        if (empty || item == null){
+
+                            setText(null);
+                            return;
+                        }
+
+                        setText(item.toString());
+                    }
+                };
+            }
+        });
+        list.setItems(animals);
+        animals.setAll(application.getAnimals());
     }
 
     @FXML
@@ -45,6 +75,7 @@ public class MainWindowController extends VBox {
         Integer age = this.age.getValue();
         String name = this.name.textProperty().get();
 
-        application.createAnimal(type, age, name);
+        Animal animal = application.createAnimal(type, age, name);
+        animals.add(animal);
     }
 }

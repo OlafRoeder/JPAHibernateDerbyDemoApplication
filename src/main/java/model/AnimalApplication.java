@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.AnimalDao;
 
+import java.util.List;
+
 public class AnimalApplication implements ApplicationType {
 
     private static final Logger logger = LoggerFactory.getLogger(AnimalApplication.class);
@@ -26,7 +28,12 @@ public class AnimalApplication implements ApplicationType {
     }
 
     @Override
-    public void createAnimal(Type type, Integer age, String name) {
-        animalDao.createAnimal(type, age, name);
+    public Animal createAnimal(Type type, Integer age, String name) {
+        return animalDao.createAnimal(type, age, name);
+    }
+
+    @Override
+    public List<Animal> getAnimals() {
+        return animalDao.getAnimals();
     }
 }

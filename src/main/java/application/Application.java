@@ -1,10 +1,12 @@
 package application;
 
 import javafx.application.Platform;
+import model.Animal;
 import model.Type;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.List;
 
 public class Application {
 
@@ -25,7 +27,11 @@ public class Application {
         return new FXMLControllerFactory(this);
     }
 
-    public void createAnimal(Type type, Integer age, String name) {
-        applicationType.createAnimal(type, age, name);
+    public Animal createAnimal(Type type, Integer age, String name) {
+        return applicationType.createAnimal(type, age, name);
+    }
+
+    public List<Animal> getAnimals() {
+        return applicationType.getAnimals();
     }
 }

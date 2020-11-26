@@ -53,6 +53,18 @@ public class AnimalDao {
     }
 
     /**
+     * Finds and returns all {@link Animal animals} from the database.
+     * @return List of {@link Animal animals}
+     */
+    @SuppressWarnings("unchecked")
+    public List<Animal> getAnimals() {
+
+        Query findAnimals = entityManager.createQuery("select animal from Animal animal", Animal.class);
+
+        return findAnimals.getResultList();
+    }
+
+    /**
      * Demonstration of a simple persist (CRUD: CREATE)
      */
     public void createAnimal() {
@@ -78,7 +90,7 @@ public class AnimalDao {
      * @param age Age of {@link Animal}
      * @param name Name of {@link Animal}
      */
-    public void createAnimal(Type type, Integer age, String name) {
+    public Animal createAnimal(Type type, Integer age, String name) {
 
         beginTransaction();
 
@@ -91,6 +103,7 @@ public class AnimalDao {
 
         commitTransaction();
 
+        return animal;
     }
 
     /**

@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox minHeight="320.0" minWidth="240.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindowController">
+<VBox minHeight="320.0" minWidth="240.0" stylesheets="@../css/main.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindowController">
 
     <MenuBar VBox.vgrow="NEVER">
         <Menu mnemonicParsing="false" text="File">
@@ -28,9 +28,9 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0">
                <TextField fx:id="name" />
-               <Spinner fx:id="age" >
+               <Spinner fx:id="age">
                   <valueFactory>
-                     <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="99"/>
+                     <SpinnerValueFactory.IntegerSpinnerValueFactory max="99" min="0" />
                   </valueFactory>
                </Spinner>
                <ComboBox fx:id="type" prefWidth="150.0" />
@@ -40,7 +40,7 @@
             </VBox>
          </HBox>
       </VBox>
-      <ListView prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="list" prefHeight="200.0" prefWidth="200.0" />
    </VBox>
 
 </VBox>

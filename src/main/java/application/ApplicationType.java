@@ -1,6 +1,9 @@
 package application;
 
+import model.Animal;
 import model.Type;
+
+import java.util.List;
 
 public interface ApplicationType {
 
@@ -8,5 +11,7 @@ public interface ApplicationType {
 
     void shutdown();
 
-    void createAnimal(Type type, Integer age, String name);
+    Animal createAnimal(Type type, Integer age, String name);
+
+    List<Animal> getAnimals();
 }
