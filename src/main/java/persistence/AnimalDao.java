@@ -74,16 +74,18 @@ public class AnimalDao {
 
     /**
      * Demonstration of a simple update (CRUD: UPDATE)
+     * @param animal The {@link Animal} to update
+     * @param name new name value
+     * @param age new age value
+     * @param type new {@link Type value}
      */
-    public void updateAnimal() {
+    public void updateAnimal(Animal animal, String name, int age, Type type) {
 
         beginTransaction();
 
-        Animal animal = entityManager.find(Animal.class, 1L);
-
-        animal.setAge(5);
-        animal.setType(Type.BIRD);
-        animal.setName("Pen Pen");
+        animal.setName(name);
+        animal.setAge(age);
+        animal.setType(type);
 
         commitTransaction();
     }

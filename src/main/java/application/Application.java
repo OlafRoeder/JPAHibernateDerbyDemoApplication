@@ -31,6 +31,10 @@ public class Application {
         return applicationType.getAnimals();
     }
 
+    public void updateAnimal(Animal animal, String name, int age, Type type) {
+        applicationType.updateAnimal(animal, name, age, type);
+    }
+
     public void deleteAnimal(Animal animal) {
         applicationType.deleteAnimal(animal);
     }

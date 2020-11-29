@@ -1,18 +1,19 @@
 package view.viewmodel;
 
 import application.Application;
+import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.util.Callback;
 import lombok.NonNull;
 import model.Animal;
 import model.Type;
 import view.AnimalCellFactory;
 
+import java.net.DatagramSocket;
 import java.text.MessageFormat;
 
 public class MainWindowViewModel {
@@ -22,9 +23,14 @@ public class MainWindowViewModel {
     private final ObservableList<Animal> animals = FXCollections.observableArrayList();
     private final StringProperty nameProperty = new SimpleStringProperty();
     private final IntegerProperty ageProperty = new SimpleIntegerProperty();
-    private final ObjectProperty<Type> typeProperty = new SimpleObjectProperty<>();
 
     private final BooleanProperty createButtonActiveProperty = new SimpleBooleanProperty(false);
+    private final ObjectProperty<Animal> animalProperty = new SimpleObjectProperty<>();
+    private final ObjectProperty<SpinnerValueFactory<Integer>> ageFactoryProperty=new SimpleObjectProperty<>();
+    private final Property<SingleSelectionModel<Type>> selectedTypeProperty=new SimpleObjectProperty<>();
+    private final ObjectProperty<MultipleSelectionModel<Animal>> selectionModelProperty=new SimpleObjectProperty<>();
+    private final BooleanProperty updateButtonActiveProperty =new SimpleBooleanProperty(false);
+    private final IntegerProperty selectedIndexProperty=new SimpleIntegerProperty();
 
     public MainWindowViewModel(@NonNull Application application) {
 
@@ -32,13 +38,23 @@ public class MainWindowViewModel {
 
         this.animals.setAll(application.getAnimals());
 
-        this.createButtonActiveProperty.bind(nameProperty.isNotEmpty().and(ageProperty.greaterThan(0).and(typeProperty.isNotNull())));
+        this.createButtonActiveProperty.bind(nameProperty.isNotEmpty().and(ageProperty.greaterThan(0)));
 
+        this.selectedIndexProperty.addListener((observable, oldValue, newValue) ->{
+            if(newValue.intValue()>-1)
+                updateButtonActiveProperty.set(true);
+        });
+
+        this.animalProperty.addListener((observable, oldValue, newValue) -> {
+            nameProperty.set(newValue.getName());
+            ageFactoryProperty.get().setValue(newValue.getAge());
+            selectedTypeProperty.getValue().select(newValue.getType());
+        });
     }
 
     public void createAnimal() {
 
-        Type type = typeProperty.get();
+        Type type = selectedTypeProperty.getValue().getSelectedItem();
         Integer age = ageProperty.get();
         String name = nameProperty.get();
 
@@ -48,6 +64,20 @@ public class MainWindowViewModel {
 
     public ObservableList<Animal> getAnimals() {
         return animals;
+    }
+
+    public void updateAnimal() {
+
+        Animal animal = animalProperty.get();
+
+        application.updateAnimal(animal, nameProperty.get(), ageProperty.get(), selectedTypeProperty.getValue().getSelectedItem());
+
+        int index = animals.indexOf(animal);
+
+        animals.remove(animal);
+        animals.add(index, animal);
+
+        selectionModelProperty.get().select(animal);
     }
 
     public void deleteAnimal(Animal animal) {
@@ -68,10 +98,6 @@ public class MainWindowViewModel {
         return ageProperty;
     }
 
-    public ObjectProperty<Type> typeProperty() {
-        return typeProperty;
-    }
-
     public Callback<ListView<Animal>, ListCell<Animal>> getListViewCellFactory() {
         return new AnimalCellFactory(this);
     }
@@ -86,5 +112,29 @@ public class MainWindowViewModel {
 
     public Type[] getTypes() {
         return Type.values();
+    }
+
+    public ObjectProperty<Animal> animalProperty() {
+        return animalProperty;
+    }
+
+    public ObjectProperty<SpinnerValueFactory<Integer>> ageFactoryProperty() {
+        return ageFactoryProperty;
+    }
+
+    public Property<SingleSelectionModel<Type>> selectedTypeProperty() {
+        return selectedTypeProperty;
+    }
+
+    public ObjectProperty<MultipleSelectionModel<Animal>> selectionModelProperty() {
+        return selectionModelProperty;
+    }
+
+    public BooleanBinding updateButtonDisableProperty() {
+        return updateButtonActiveProperty.not();
+    }
+
+    public IntegerProperty selectedIndexProperty() {
+        return selectedIndexProperty;
     }
 }

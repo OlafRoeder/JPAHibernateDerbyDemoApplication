@@ -38,6 +38,11 @@ public class AnimalApplication implements ApplicationType {
     }
 
     @Override
+    public void updateAnimal(Animal animal, String name, int age, Type type) {
+        animalDao.updateAnimal(animal, name, age, type);
+    }
+
+    @Override
     public void deleteAnimal(Animal animal) {
         animalDao.deleteAnimal(animal);
     }

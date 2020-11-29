@@ -1,5 +1,6 @@
 package view;
 
+import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -22,6 +23,8 @@ public class MainWindowView extends VBox {
     private ListView<Animal> list;
     @FXML
     private Button createButton;
+    @FXML
+    private Button updateButton;
 
     public MainWindowView(@NonNull MainWindowViewModel viewModel) {
         this.viewModel = viewModel;
@@ -32,20 +35,29 @@ public class MainWindowView extends VBox {
 
         name.textProperty().bindBidirectional(viewModel.nameProperty());
         viewModel.ageProperty().bind(age.valueProperty());
-        viewModel.typeProperty().bind(type.getSelectionModel().selectedItemProperty());
+        viewModel.ageFactoryProperty().bind(age.valueFactoryProperty());
+        viewModel.selectedTypeProperty().bindBidirectional(type.selectionModelProperty());
 
         createButton.disableProperty().bind(viewModel.createButtonDisableProperty());
+        updateButton.disableProperty().bind(viewModel.updateButtonDisableProperty());
 
         type.getItems().setAll(viewModel.getTypes());
 
         list.setCellFactory(viewModel.getListViewCellFactory());
         list.setItems(viewModel.getAnimals());
-
+        viewModel.animalProperty().bind(list.getSelectionModel().selectedItemProperty());
+        viewModel.selectionModelProperty().set(list.getSelectionModel());
+        viewModel.selectedIndexProperty().bind(list.getSelectionModel().selectedIndexProperty());
     }
 
     @FXML
     private void onCreate() {
         viewModel.createAnimal();
+    }
+
+    @FXML
+    private void onUpdate(){
+        viewModel.updateAnimal();
     }
 
     @FXML

@@ -15,5 +15,7 @@ public interface ApplicationType {
 
     List<Animal> getAnimals();
 
+    void updateAnimal(Animal animal, String name, int age, Type type);
+
     void deleteAnimal(Animal animal);
 }
