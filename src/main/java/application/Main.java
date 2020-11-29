@@ -1,6 +1,6 @@
 package application;
 
-import controller.MainWindowView;
+import view.MainWindowView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
