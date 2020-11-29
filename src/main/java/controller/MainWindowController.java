@@ -6,10 +6,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.util.Callback;
 import lombok.NonNull;
 import model.Animal;
 import model.Type;
+import view.AnimalCellFactory;
 
 public class MainWindowController extends VBox {
 
@@ -38,27 +38,7 @@ public class MainWindowController extends VBox {
 
         type.getItems().setAll(Type.values());
 
-        list.setCellFactory(new Callback<>() {
-
-            @Override
-            public ListCell<Animal> call(ListView<Animal> param) {
-                return new ListCell<>() {
-
-                    @Override
-                    protected void updateItem(Animal item, boolean empty) {
-                        super.updateItem(item, empty);
-
-                        if (empty || item == null){
-
-                            setText(null);
-                            return;
-                        }
-
-                        setText(item.toString());
-                    }
-                };
-            }
-        });
+        list.setCellFactory(new AnimalCellFactory());
         list.setItems(animals);
         animals.setAll(application.getAnimals());
     }
