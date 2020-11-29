@@ -27,14 +27,16 @@ public class AnimalCellFactory implements javafx.util.Callback<javafx.scene.cont
                 if (empty || item == null) {
 
                     setText(null);
-                    return;
+                    setGraphic(null);
+
+                } else {
+
+                    Button delete = new Button("delete");
+                    delete.onActionProperty().setValue((ActionEvent event) -> viewModel.deleteAnimal(item));
+                    setGraphic(delete);
+
+                    setText(viewModel.getDisplayText(item));
                 }
-
-                Button delete = new Button("delete");
-                delete.onActionProperty().setValue((ActionEvent event) -> viewModel.deleteAnimal(item));
-                setGraphic(delete);
-
-                setText(viewModel.getDisplayText(item));
             }
         };
     }
