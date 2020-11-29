@@ -1,10 +1,7 @@
 package view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import lombok.NonNull;
 import model.Animal;
@@ -23,6 +20,8 @@ public class MainWindowView extends VBox {
     private ComboBox<Type> type;
     @FXML
     private ListView<Animal> list;
+    @FXML
+    private Button createButton;
 
     public MainWindowView(@NonNull MainWindowViewModel viewModel) {
         this.viewModel = viewModel;
@@ -34,6 +33,7 @@ public class MainWindowView extends VBox {
         name.textProperty().bindBidirectional(viewModel.nameProperty());
         viewModel.ageProperty().bind(age.valueProperty());
         viewModel.typeProperty().bind(type.getSelectionModel().selectedItemProperty());
+        createButton.disableProperty().bind(viewModel.createButtonDisableProperty());
 
         type.getItems().setAll(Type.values());
 

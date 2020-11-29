@@ -1,6 +1,7 @@
 package view.viewmodel;
 
 import application.Application;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,11 +24,16 @@ public class MainWindowViewModel {
     private final IntegerProperty ageProperty = new SimpleIntegerProperty();
     private final ObjectProperty<Type> typeProperty = new SimpleObjectProperty<>();
 
+    private final BooleanProperty createButtonActiveProperty = new SimpleBooleanProperty(false);
+
     public MainWindowViewModel(@NonNull Application application) {
 
         this.application = application;
 
         this.animals.setAll(application.getAnimals());
+
+        this.createButtonActiveProperty.bind(nameProperty.isNotEmpty().and(ageProperty.greaterThan(0).and(typeProperty.isNotNull())));
+
     }
 
     public void create() {
@@ -68,6 +74,10 @@ public class MainWindowViewModel {
 
     public Callback<ListView<Animal>, ListCell<Animal>> getListViewCellFactory() {
         return new AnimalCellFactory(this);
+    }
+
+    public BooleanBinding createButtonDisableProperty() {
+        return createButtonActiveProperty.not();
     }
 
     public void quit() {

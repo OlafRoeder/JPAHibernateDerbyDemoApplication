@@ -33,7 +33,7 @@
                     </Spinner>
                     <ComboBox fx:id="type" maxWidth="120.0" minWidth="120.0"/>
                     <HBox alignment="TOP_RIGHT" maxWidth="120.0" minWidth="120.0">
-                        <Button mnemonicParsing="false" onAction="#onCreate" text="Create"/>
+                        <Button fx:id="createButton" mnemonicParsing="false" onAction="#onCreate" text="Create"/>
                     </HBox>
                 </VBox>
             </HBox>
