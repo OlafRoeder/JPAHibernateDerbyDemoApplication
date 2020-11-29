@@ -40,12 +40,21 @@ public class MainWindowViewModel {
 
         this.createButtonActiveProperty.bind(nameProperty.isNotEmpty().and(ageProperty.greaterThan(0)));
 
-        this.selectedIndexProperty.addListener((observable, oldValue, newValue) -> {
-            if (newValue.intValue() > -1)
-                updateButtonActiveProperty.set(true);
-        });
+        this.selectedIndexProperty.addListener((observable, oldValue, newValue) ->
+                updateButtonActiveProperty.set(newValue.intValue() > -1)
+        );
 
         this.animalProperty.addListener((observable, oldValue, newValue) -> {
+
+            if(newValue==null){
+
+                nameProperty.set(null);
+                ageFactoryProperty.get().setValue(0);
+                selectedTypeProperty.getValue().select(Type.AMPHIBIAN);
+
+                return;
+            }
+
             nameProperty.set(newValue.getName());
             ageFactoryProperty.get().setValue(newValue.getAge());
             selectedTypeProperty.getValue().select(newValue.getType());
