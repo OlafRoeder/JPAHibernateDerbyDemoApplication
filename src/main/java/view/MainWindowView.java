@@ -33,9 +33,10 @@ public class MainWindowView extends VBox {
         name.textProperty().bindBidirectional(viewModel.nameProperty());
         viewModel.ageProperty().bind(age.valueProperty());
         viewModel.typeProperty().bind(type.getSelectionModel().selectedItemProperty());
+
         createButton.disableProperty().bind(viewModel.createButtonDisableProperty());
 
-        type.getItems().setAll(Type.values());
+        type.getItems().setAll(viewModel.getTypes());
 
         list.setCellFactory(viewModel.getListViewCellFactory());
         list.setItems(viewModel.getAnimals());

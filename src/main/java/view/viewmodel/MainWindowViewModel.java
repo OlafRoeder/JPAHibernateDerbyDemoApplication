@@ -83,4 +83,8 @@ public class MainWindowViewModel {
     public void quit() {
         application.quit();
     }
+
+    public Type[] getTypes() {
+        return Type.values();
+    }
 }
