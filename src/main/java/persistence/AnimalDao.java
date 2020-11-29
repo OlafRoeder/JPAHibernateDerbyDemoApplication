@@ -37,23 +37,8 @@ public class AnimalDao {
     }
 
     /**
-     * Demonstration of a simple select (CRUD: READ)
-     */
-    public void printDatabase() {
-
-        Query findAnimals = entityManager.createQuery("select animal from Animal animal", Animal.class);
-
-        @SuppressWarnings("unchecked")
-        List<Animal> animalList = findAnimals.getResultList();
-
-        for (Animal animal : animalList)
-            System.out.println(animal);
-
-        System.out.println("Database Size: " + animalList.size());
-    }
-
-    /**
      * Finds and returns all {@link Animal animals} from the database.
+     *
      * @return List of {@link Animal animals}
      */
     @SuppressWarnings("unchecked")
@@ -65,29 +50,10 @@ public class AnimalDao {
     }
 
     /**
-     * Demonstration of a simple persist (CRUD: CREATE)
-     */
-    public void createAnimal() {
-
-        beginTransaction();
-
-        Animal animal = new Animal();
-        animal.setType(Type.MAMMAL);
-        animal.setName("Hannibal");
-        animal.setAge(7);
-
-        entityManager.persist(animal);
-        commitTransaction();
-    }
-
-    private void beginTransaction() {
-        entityManager.getTransaction().begin();
-    }
-
-    /**
      * Demonstration of a simple persist with parameters.
+     *
      * @param type {@link Type} of {@link Animal}
-     * @param age Age of {@link Animal}
+     * @param age  Age of {@link Animal}
      * @param name Name of {@link Animal}
      */
     public Animal createAnimal(Type type, Integer age, String name) {
@@ -122,24 +88,6 @@ public class AnimalDao {
         commitTransaction();
     }
 
-    private void commitTransaction() {
-        entityManager.getTransaction().commit();
-    }
-
-    /**
-     * Demonstration of a simple delete (CRUD: DELETE)
-     */
-    public void deleteAnimal() {
-
-        beginTransaction();
-
-        Animal animal = entityManager.find(Animal.class, 1L);
-
-        entityManager.remove(animal);
-
-        commitTransaction();
-    }
-
     /**
      * Demonstration of a simple delete (CRUD: DELETE) with parameter
      */
@@ -150,6 +98,14 @@ public class AnimalDao {
         entityManager.remove(animal);
 
         commitTransaction();
+    }
+
+    private void beginTransaction() {
+        entityManager.getTransaction().begin();
+    }
+
+    private void commitTransaction() {
+        entityManager.getTransaction().commit();
     }
 
     /**
