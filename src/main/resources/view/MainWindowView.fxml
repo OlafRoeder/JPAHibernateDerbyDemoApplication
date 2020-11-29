@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox minHeight="320.0" minWidth="240.0" stylesheets="@../css/main.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindowController">
+<VBox maxHeight="480.0" maxWidth="240.0" minHeight="480.0" minWidth="240.0" prefHeight="480.0" prefWidth="240.0" stylesheets="@../css/main.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controller.MainWindowController">
 
     <MenuBar VBox.vgrow="NEVER">
         <Menu mnemonicParsing="false" text="File">
@@ -12,35 +12,37 @@
         </Menu>
     </MenuBar>
    <VBox spacing="8.0" VBox.vgrow="SOMETIMES">
-      <padding>
-         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-      </padding>
       <VBox.margin>
-         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         <Insets />
       </VBox.margin>
       <Label text="JPA Hibernate Derby Demo" />
-      <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="NEVER">
-         <HBox prefHeight="100.0" prefWidth="200.0">
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0">
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" VBox.vgrow="SOMETIMES">
+         <HBox prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" HBox.hgrow="SOMETIMES">
                <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Name" />
                <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Age" />
                <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Species" />
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0">
-               <TextField fx:id="name" />
-               <Spinner fx:id="age">
+            <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="8.0" HBox.hgrow="SOMETIMES">
+               <TextField fx:id="name" maxWidth="120.0" minWidth="120.0" />
+               <Spinner fx:id="age" maxWidth="120.0" minWidth="120.0">
                   <valueFactory>
                      <SpinnerValueFactory.IntegerSpinnerValueFactory max="99" min="0" />
                   </valueFactory>
                </Spinner>
-               <ComboBox fx:id="type" prefWidth="150.0" />
-               <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                  <Button mnemonicParsing="false" onAction="#onCreate" text="Create" />
+               <ComboBox fx:id="type" maxWidth="120.0" minWidth="120.0" />
+               <HBox alignment="TOP_RIGHT" maxWidth="120.0" minWidth="120.0">
+                  <children>
+                     <Button mnemonicParsing="false" onAction="#onCreate" text="Create" />
+                  </children>
                </HBox>
             </VBox>
          </HBox>
+         <ListView fx:id="list" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
       </VBox>
-      <ListView fx:id="list" prefHeight="200.0" prefWidth="200.0" />
+      <padding>
+         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+      </padding>
    </VBox>
 
 </VBox>
