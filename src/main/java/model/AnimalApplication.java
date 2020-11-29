@@ -1,6 +1,8 @@
 package model;
 
 import application.ApplicationType;
+import concurrency.GlobalExecutorService;
+import javafx.concurrent.Task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.AnimalDao;
@@ -23,11 +25,6 @@ public class AnimalApplication implements ApplicationType {
     }
 
     @Override
-    public void shutdown() {
-        animalDao.shutdown();
-    }
-
-    @Override
     public Animal createAnimal(Type type, Integer age, String name) {
         return animalDao.createAnimal(type, age, name);
     }
@@ -45,5 +42,15 @@ public class AnimalApplication implements ApplicationType {
     @Override
     public void deleteAnimal(Animal animal) {
         animalDao.deleteAnimal(animal);
+    }
+
+    @Override
+    public void execute(Task<?> task) {
+        GlobalExecutorService.submit(task);
+    }
+
+    @Override
+    public void shutdown() {
+        animalDao.shutdown();
     }
 }

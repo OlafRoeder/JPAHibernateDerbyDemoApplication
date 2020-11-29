@@ -1,5 +1,6 @@
 package application;
 
+import javafx.concurrent.Task;
 import model.Animal;
 import model.Type;
 
@@ -18,4 +19,6 @@ public interface ApplicationType {
     void updateAnimal(Animal animal, String name, int age, Type type);
 
     void deleteAnimal(Animal animal);
+
+    void execute(Task<?> task);
 }

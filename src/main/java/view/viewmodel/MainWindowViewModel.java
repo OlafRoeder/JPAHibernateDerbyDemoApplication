@@ -5,16 +5,22 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.scene.control.*;
 import javafx.util.Callback;
 import lombok.NonNull;
 import model.Animal;
 import model.Type;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import view.AnimalCellFactory;
 
 import java.text.MessageFormat;
+import java.util.List;
 
 public class MainWindowViewModel {
+
+    private static final Logger logger = LoggerFactory.getLogger(MainWindowViewModel.class);
 
     private final Application application;
 
@@ -36,7 +42,24 @@ public class MainWindowViewModel {
 
         this.application = application;
 
-        this.animals.setAll(application.getAnimals());
+        Task<List<Animal>> getAnimalsTask = new Task<>() {
+
+            @Override
+            protected List<Animal> call() {
+                return application.getAnimals();
+            }
+
+            @Override
+            protected void succeeded() {
+                animals.setAll(getValue());
+            }
+
+            @Override
+            protected void failed() {
+                logger.error(MessageFormat.format("Could not load animals from {0}! {1}", application, getException()));
+            }
+        };
+        application.execute(getAnimalsTask);
 
         this.createButtonActiveProperty.bind(nameProperty.isNotEmpty().and(ageProperty.greaterThan(0)));
 
@@ -46,7 +69,7 @@ public class MainWindowViewModel {
 
         this.animalProperty.addListener((observable, oldValue, newValue) -> {
 
-            if(newValue==null){
+            if (newValue == null) {
 
                 nameProperty.set(null);
                 ageFactoryProperty.get().setValue(0);
@@ -63,12 +86,31 @@ public class MainWindowViewModel {
 
     public void createAnimal() {
 
-        Type type = selectedTypeProperty.getValue().getSelectedItem();
-        Integer age = ageProperty.get();
-        String name = nameProperty.get();
+        Task<Animal> createAnimalTask = new Task<>() {
 
-        Animal animal = application.createAnimal(type, age, name);
-        animals.add(animal);
+            @Override
+            protected Animal call() {
+                Type type = selectedTypeProperty.getValue().getSelectedItem();
+                Integer age = ageProperty.get();
+                String name = nameProperty.get();
+
+                return application.createAnimal(type, age, name);
+            }
+
+            @Override
+            protected void succeeded() {
+                animals.add(getValue());
+            }
+
+            @Override
+            protected void failed() {
+                logger.error(MessageFormat.format("Could not create animal with name {0}," +
+                                "age {1} and type {2}! {3}", nameProperty.get(), ageProperty.get(),
+                        selectedTypeProperty.getValue().getSelectedItem(), getException()));
+            }
+        };
+
+        application.execute(createAnimalTask);
     }
 
     public ObservableList<Animal> getAnimals() {
@@ -77,22 +119,64 @@ public class MainWindowViewModel {
 
     public void updateAnimal() {
 
-        Animal animal = animalProperty.get();
+        Task<Animal> updateAnimalTask = new Task<>() {
 
-        application.updateAnimal(animal, nameProperty.get(), ageProperty.get(), selectedTypeProperty.getValue().getSelectedItem());
+            @Override
+            protected Animal call() {
 
-        int index = animals.indexOf(animal);
+                Animal animal = animalProperty.get();
 
-        // triggers refresh on ListView
-        animals.remove(animal);
-        animals.add(index, animal);
+                application.updateAnimal(animal, nameProperty.get(), ageProperty.get(), selectedTypeProperty.getValue().getSelectedItem());
 
-        selectionModelProperty.get().select(animal);
+                return animal;
+            }
+
+            @Override
+            protected void succeeded() {
+
+                Animal animal = getValue();
+
+                int index = animals.indexOf(animal);
+
+                // triggers refresh on ListView
+                animals.remove(animal);
+                animals.add(index, animal);
+
+                selectionModelProperty.get().select(animal);
+            }
+
+            @Override
+            protected void failed() {
+                logger.error(MessageFormat.format("Animal {0} could not be updated! {1}", animalProperty.get(), getException()));
+            }
+        };
+
+        application.execute(updateAnimalTask);
+
     }
 
     public void deleteAnimal(Animal animal) {
-        application.deleteAnimal(animal);
-        animals.remove(animal);
+
+        Task<Animal> deleteAnimalTask = new Task<>() {
+
+            @Override
+            protected Animal call() {
+                application.deleteAnimal(animal);
+                return animal;
+            }
+
+            @Override
+            protected void succeeded() {
+                animals.remove(animal);
+            }
+
+            @Override
+            protected void failed() {
+                logger.error(MessageFormat.format("Animal {0} could not be deleted! {1}", animal, getException()));
+            }
+        };
+
+        application.execute(deleteAnimalTask);
     }
 
     public String getAnimalDisplayText(Animal animal) {

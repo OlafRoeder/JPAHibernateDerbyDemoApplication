@@ -1,6 +1,7 @@
 package application;
 
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import model.Animal;
 import model.Type;
 
@@ -12,11 +13,6 @@ public class Application {
 
     Application(ApplicationType applicationType) {
         this.applicationType = applicationType;
-    }
-
-    public void quit() {
-        applicationType.shutdown();
-        Platform.exit();
     }
 
     FXMLControllerFactory getFxmlControllerFactory() {
@@ -37,5 +33,14 @@ public class Application {
 
     public void deleteAnimal(Animal animal) {
         applicationType.deleteAnimal(animal);
+    }
+
+    public void execute(Task<?> task) {
+        applicationType.execute(task);
+    }
+
+    public void quit() {
+        applicationType.shutdown();
+        Platform.exit();
     }
 }
