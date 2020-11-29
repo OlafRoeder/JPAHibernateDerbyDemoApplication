@@ -2,14 +2,19 @@ package persistence;
 
 import model.Animal;
 import model.Type;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import java.text.MessageFormat;
 import java.util.List;
 
 public class AnimalDao {
+
+    private static final Logger logger = LoggerFactory.getLogger(AnimalDao.class);
 
     /**
      * Persistence unit as declared in persistence.xml
@@ -53,6 +58,8 @@ public class AnimalDao {
      */
     public Animal createAnimal(Type type, Integer age, String name) {
 
+        logger.info(MessageFormat.format("Creating new animal, name: {0}, age: {1}, type: {2}", name, age, type));
+
         beginTransaction();
 
         Animal animal = new Animal();
@@ -75,6 +82,8 @@ public class AnimalDao {
     @SuppressWarnings("unchecked")
     public List<Animal> getAnimals() {
 
+        logger.info("Read animals from database.");
+
         Query findAnimals = entityManager.createQuery("select animal from Animal animal", Animal.class);
 
         return findAnimals.getResultList();
@@ -90,6 +99,9 @@ public class AnimalDao {
      */
     public void updateAnimal(Animal animal, String name, int age, Type type) {
 
+        logger.info(MessageFormat.format("Updating animal {0}, new name: {1}, new age: {2}, new type: {3}", animal,
+                name, age, type));
+
         beginTransaction();
 
         animal.setName(name);
@@ -103,6 +115,8 @@ public class AnimalDao {
      * Demonstration of a simple delete (CRUD: DELETE) with parameter
      */
     public void deleteAnimal(Animal animal) {
+
+        logger.info(MessageFormat.format("Deleting animal {0} from database.", animal));
 
         beginTransaction();
 
