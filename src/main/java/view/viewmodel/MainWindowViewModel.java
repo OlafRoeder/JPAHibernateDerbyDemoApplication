@@ -100,6 +100,7 @@ public class MainWindowViewModel {
             @Override
             protected void succeeded() {
                 animals.add(getValue());
+                selectionModelProperty.get().select(getValue());
             }
 
             @Override
