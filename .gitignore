@@ -2,3 +2,4 @@
 /.gradle/
 /.idea/
 /animals.db/
+/derby.log
