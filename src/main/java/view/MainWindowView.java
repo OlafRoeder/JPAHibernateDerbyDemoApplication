@@ -1,61 +1,54 @@
 package view;
 
-import application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import lombok.NonNull;
 import model.Animal;
 import model.Type;
-import view.AnimalCellFactory;
+import view.viewmodel.MainWindowViewModel;
 
 public class MainWindowView extends VBox {
 
-    private final Application application;
+    private final MainWindowViewModel viewModel;
 
     @FXML
     private TextField name;
-
     @FXML
     private Spinner<Integer> age;
-
     @FXML
     private ComboBox<Type> type;
-
     @FXML
     private ListView<Animal> list;
 
-    private final ObservableList<Animal> animals= FXCollections.observableArrayList();
-
-    public MainWindowView(@NonNull Application application) {
-        this.application = application;
+    public MainWindowView(@NonNull MainWindowViewModel viewModel) {
+        this.viewModel = viewModel;
     }
 
     @FXML
     private void initialize() {
 
+        name.textProperty().bindBidirectional(viewModel.nameProperty());
+        viewModel.ageProperty().bind(age.valueProperty());
+        viewModel.typeProperty().bind(type.getSelectionModel().selectedItemProperty());
+
         type.getItems().setAll(Type.values());
 
-        list.setCellFactory(new AnimalCellFactory(application));
-        list.setItems(animals);
-        animals.setAll(application.getAnimals());
+        list.setCellFactory(viewModel.getListViewCellFactory());
+        list.setItems(viewModel.getAnimals());
+
+    }
+
+    @FXML
+    private void onCreate() {
+        viewModel.create();
     }
 
     @FXML
     private void onQuit() {
-        application.quit();
-    }
-
-    @FXML
-    private void onCreate(){
-
-        Type type = this.type.getSelectionModel().getSelectedItem();
-        Integer age = this.age.getValue();
-        String name = this.name.textProperty().get();
-
-        Animal animal = application.createAnimal(type, age, name);
-        animals.add(animal);
+        viewModel.quit();
     }
 }
