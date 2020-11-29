@@ -1,6 +1,5 @@
 package view;
 
-import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -56,7 +55,7 @@ public class MainWindowView extends VBox {
     }
 
     @FXML
-    private void onUpdate(){
+    private void onUpdate() {
         viewModel.updateAnimal();
     }
 

@@ -1,7 +1,6 @@
 package view.viewmodel;
 
 import application.Application;
-import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -13,7 +12,6 @@ import model.Animal;
 import model.Type;
 import view.AnimalCellFactory;
 
-import java.net.DatagramSocket;
 import java.text.MessageFormat;
 
 public class MainWindowViewModel {
@@ -21,16 +19,18 @@ public class MainWindowViewModel {
     private final Application application;
 
     private final ObservableList<Animal> animals = FXCollections.observableArrayList();
+    private final ObjectProperty<Animal> animalProperty = new SimpleObjectProperty<>();
+
     private final StringProperty nameProperty = new SimpleStringProperty();
     private final IntegerProperty ageProperty = new SimpleIntegerProperty();
+    private final Property<SingleSelectionModel<Type>> selectedTypeProperty = new SimpleObjectProperty<>();
 
     private final BooleanProperty createButtonActiveProperty = new SimpleBooleanProperty(false);
-    private final ObjectProperty<Animal> animalProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<SpinnerValueFactory<Integer>> ageFactoryProperty=new SimpleObjectProperty<>();
-    private final Property<SingleSelectionModel<Type>> selectedTypeProperty=new SimpleObjectProperty<>();
-    private final ObjectProperty<MultipleSelectionModel<Animal>> selectionModelProperty=new SimpleObjectProperty<>();
-    private final BooleanProperty updateButtonActiveProperty =new SimpleBooleanProperty(false);
-    private final IntegerProperty selectedIndexProperty=new SimpleIntegerProperty();
+    private final BooleanProperty updateButtonActiveProperty = new SimpleBooleanProperty(false);
+
+    private final ObjectProperty<SpinnerValueFactory<Integer>> ageFactoryProperty = new SimpleObjectProperty<>();
+    private final ObjectProperty<MultipleSelectionModel<Animal>> selectionModelProperty = new SimpleObjectProperty<>();
+    private final IntegerProperty selectedIndexProperty = new SimpleIntegerProperty();
 
     public MainWindowViewModel(@NonNull Application application) {
 
@@ -40,8 +40,8 @@ public class MainWindowViewModel {
 
         this.createButtonActiveProperty.bind(nameProperty.isNotEmpty().and(ageProperty.greaterThan(0)));
 
-        this.selectedIndexProperty.addListener((observable, oldValue, newValue) ->{
-            if(newValue.intValue()>-1)
+        this.selectedIndexProperty.addListener((observable, oldValue, newValue) -> {
+            if (newValue.intValue() > -1)
                 updateButtonActiveProperty.set(true);
         });
 
@@ -74,6 +74,7 @@ public class MainWindowViewModel {
 
         int index = animals.indexOf(animal);
 
+        // triggers refresh on ListView
         animals.remove(animal);
         animals.add(index, animal);
 
@@ -106,8 +107,8 @@ public class MainWindowViewModel {
         return createButtonActiveProperty.not();
     }
 
-    public void quit() {
-        application.quit();
+    public BooleanBinding updateButtonDisableProperty() {
+        return updateButtonActiveProperty.not();
     }
 
     public Type[] getTypes() {
@@ -130,11 +131,11 @@ public class MainWindowViewModel {
         return selectionModelProperty;
     }
 
-    public BooleanBinding updateButtonDisableProperty() {
-        return updateButtonActiveProperty.not();
-    }
-
     public IntegerProperty selectedIndexProperty() {
         return selectedIndexProperty;
+    }
+
+    public void quit() {
+        application.quit();
     }
 }

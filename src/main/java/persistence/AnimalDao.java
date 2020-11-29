@@ -36,17 +36,12 @@ public class AnimalDao {
         this.entityManager = entityManagerFactory.createEntityManager();
     }
 
-    /**
-     * Finds and returns all {@link Animal animals} from the database.
-     *
-     * @return List of {@link Animal animals}
-     */
-    @SuppressWarnings("unchecked")
-    public List<Animal> getAnimals() {
+    private void beginTransaction() {
+        entityManager.getTransaction().begin();
+    }
 
-        Query findAnimals = entityManager.createQuery("select animal from Animal animal", Animal.class);
-
-        return findAnimals.getResultList();
+    private void commitTransaction() {
+        entityManager.getTransaction().commit();
     }
 
     /**
@@ -73,11 +68,25 @@ public class AnimalDao {
     }
 
     /**
+     * Finds and returns all {@link Animal animals} from the database.
+     *
+     * @return List of {@link Animal animals}
+     */
+    @SuppressWarnings("unchecked")
+    public List<Animal> getAnimals() {
+
+        Query findAnimals = entityManager.createQuery("select animal from Animal animal", Animal.class);
+
+        return findAnimals.getResultList();
+    }
+
+    /**
      * Demonstration of a simple update (CRUD: UPDATE)
+     *
      * @param animal The {@link Animal} to update
-     * @param name new name value
-     * @param age new age value
-     * @param type new {@link Type value}
+     * @param name   new name value
+     * @param age    new age value
+     * @param type   new {@link Type value}
      */
     public void updateAnimal(Animal animal, String name, int age, Type type) {
 
@@ -100,14 +109,6 @@ public class AnimalDao {
         entityManager.remove(animal);
 
         commitTransaction();
-    }
-
-    private void beginTransaction() {
-        entityManager.getTransaction().begin();
-    }
-
-    private void commitTransaction() {
-        entityManager.getTransaction().commit();
     }
 
     /**

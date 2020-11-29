@@ -1,46 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<VBox maxHeight="480.0" maxWidth="240.0" minHeight="480.0" minWidth="240.0" prefHeight="480.0" prefWidth="240.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowView">
+<VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="480.0" maxWidth="240.0" minHeight="480.0" minWidth="240.0" prefHeight="480.0"
+      prefWidth="240.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/11.0.1"
+      fx:controller="view.MainWindowView">
 
     <MenuBar VBox.vgrow="NEVER">
         <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#onQuit" text="Quit" />
+            <MenuItem mnemonicParsing="false" onAction="#onQuit" text="Quit"/>
         </Menu>
     </MenuBar>
     <VBox spacing="8.0" VBox.vgrow="SOMETIMES">
         <VBox.margin>
-            <Insets />
+            <Insets/>
         </VBox.margin>
-        <Label text="JPA Hibernate Derby Demo" />
+        <Label text="JPA Hibernate Derby Demo"/>
         <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" VBox.vgrow="SOMETIMES">
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="8.0">
                 <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" HBox.hgrow="SOMETIMES">
-                    <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Name" />
-                    <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Age" />
-                    <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Species" />
+                    <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Name"/>
+                    <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Age"/>
+                    <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Species"/>
                 </VBox>
-                <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="8.0" HBox.hgrow="SOMETIMES">
-                    <TextField fx:id="name" maxWidth="120.0" minWidth="120.0" />
+                <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="8.0"
+                      HBox.hgrow="SOMETIMES">
+                    <TextField fx:id="name" maxWidth="120.0" minWidth="120.0"/>
                     <Spinner fx:id="age" maxWidth="120.0" minWidth="120.0">
                         <valueFactory>
-                            <SpinnerValueFactory.IntegerSpinnerValueFactory max="99" min="0" />
+                            <SpinnerValueFactory.IntegerSpinnerValueFactory max="99" min="0"/>
                         </valueFactory>
                     </Spinner>
-                    <ComboBox fx:id="type" maxWidth="120.0" minWidth="120.0" />
+                    <ComboBox fx:id="type" maxWidth="120.0" minWidth="120.0"/>
                     <HBox alignment="TOP_RIGHT" maxWidth="120.0" minWidth="120.0" spacing="8.0">
-                        <Button fx:id="createButton" mnemonicParsing="false" onAction="#onCreate" text="Create" />
-                  <Button fx:id="updateButton" mnemonicParsing="false" onAction="#onUpdate" text="Update" />
+                        <Button fx:id="createButton" mnemonicParsing="false" onAction="#onCreate" text="Create"/>
+                        <Button fx:id="updateButton" mnemonicParsing="false" onAction="#onUpdate" text="Update"/>
                     </HBox>
                 </VBox>
             </HBox>
-            <ListView fx:id="list" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            <ListView fx:id="list" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS"/>
         </VBox>
         <padding>
-            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
         </padding>
     </VBox>
 
