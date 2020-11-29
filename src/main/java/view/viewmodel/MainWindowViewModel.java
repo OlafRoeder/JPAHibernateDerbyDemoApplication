@@ -36,7 +36,7 @@ public class MainWindowViewModel {
 
     }
 
-    public void create() {
+    public void createAnimal() {
 
         Type type = typeProperty.get();
         Integer age = ageProperty.get();
@@ -55,7 +55,7 @@ public class MainWindowViewModel {
         animals.remove(animal);
     }
 
-    public String getDisplayText(Animal animal) {
+    public String getAnimalDisplayText(Animal animal) {
         return MessageFormat.format("{0} (age: {1}, type: {2})", animal.getName(), animal.getAge(),
                 animal.getType());
     }

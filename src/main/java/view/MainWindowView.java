@@ -45,7 +45,7 @@ public class MainWindowView extends VBox {
 
     @FXML
     private void onCreate() {
-        viewModel.create();
+        viewModel.createAnimal();
     }
 
     @FXML

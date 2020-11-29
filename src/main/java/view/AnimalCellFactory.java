@@ -35,7 +35,7 @@ public class AnimalCellFactory implements javafx.util.Callback<javafx.scene.cont
                     delete.onActionProperty().setValue((ActionEvent event) -> viewModel.deleteAnimal(item));
                     setGraphic(delete);
 
-                    setText(viewModel.getDisplayText(item));
+                    setText(viewModel.getAnimalDisplayText(item));
                 }
             }
         };
