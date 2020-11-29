@@ -14,4 +14,6 @@ public interface ApplicationType {
     Animal createAnimal(Type type, Integer age, String name);
 
     List<Animal> getAnimals();
+
+    void deleteAnimal(Animal animal);
 }

@@ -36,4 +36,9 @@ public class AnimalApplication implements ApplicationType {
     public List<Animal> getAnimals() {
         return animalDao.getAnimals();
     }
+
+    @Override
+    public void deleteAnimal(Animal animal) {
+        animalDao.deleteAnimal(animal);
+    }
 }

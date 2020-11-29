@@ -38,7 +38,7 @@ public class MainWindowController extends VBox {
 
         type.getItems().setAll(Type.values());
 
-        list.setCellFactory(new AnimalCellFactory());
+        list.setCellFactory(new AnimalCellFactory(application));
         list.setItems(animals);
         animals.setAll(application.getAnimals());
     }

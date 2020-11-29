@@ -141,6 +141,18 @@ public class AnimalDao {
     }
 
     /**
+     * Demonstration of a simple delete (CRUD: DELETE) with parameter
+     */
+    public void deleteAnimal(Animal animal) {
+
+        beginTransaction();
+
+        entityManager.remove(animal);
+
+        commitTransaction();
+    }
+
+    /**
      * Shutdown entity manager after all operations are done.
      */
     public void shutdown() {

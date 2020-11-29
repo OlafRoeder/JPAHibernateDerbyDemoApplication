@@ -4,13 +4,9 @@ import javafx.application.Platform;
 import model.Animal;
 import model.Type;
 
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.List;
 
 public class Application {
-
-    public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
 
     private final ApplicationType applicationType;
 
@@ -33,5 +29,9 @@ public class Application {
 
     public List<Animal> getAnimals() {
         return applicationType.getAnimals();
+    }
+
+    public void deleteAnimal(Animal animal) {
+        applicationType.deleteAnimal(animal);
     }
 }
