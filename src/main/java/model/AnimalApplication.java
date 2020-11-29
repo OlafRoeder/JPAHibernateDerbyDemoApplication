@@ -19,7 +19,7 @@ public class AnimalApplication implements ApplicationType {
 
     @Override
     public void printApplicationType() {
-        logger.info("Starting animal application");
+        logger.info("AnimalApplication");
     }
 
     @Override
