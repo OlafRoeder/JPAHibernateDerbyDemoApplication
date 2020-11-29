@@ -11,7 +11,7 @@ import model.Animal;
 import model.Type;
 import view.AnimalCellFactory;
 
-public class MainWindowController extends VBox {
+public class MainWindowView extends VBox {
 
     private final Application application;
 
@@ -29,7 +29,7 @@ public class MainWindowController extends VBox {
 
     private final ObservableList<Animal> animals= FXCollections.observableArrayList();
 
-    public MainWindowController(@NonNull Application application) {
+    public MainWindowView(@NonNull Application application) {
         this.application = application;
     }
 

@@ -1,6 +1,6 @@
 package application;
 
-import controller.MainWindowController;
+import controller.MainWindowView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -48,7 +48,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
 
         //controller
-        MainWindowController controller = loader.getController();
+        MainWindowView controller = loader.getController();
 
         primaryStage.show();
     }
