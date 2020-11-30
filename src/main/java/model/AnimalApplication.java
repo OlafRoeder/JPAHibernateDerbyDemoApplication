@@ -21,7 +21,7 @@ public class AnimalApplication implements ApplicationType {
 
     @Override
     public void printApplicationType() {
-        logger.info("AnimalApplication");
+        logger.info("JPA Hibernate Derby Demo. Test CRUD operations with animals.");
     }
 
     @Override
