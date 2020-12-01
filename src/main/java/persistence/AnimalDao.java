@@ -5,10 +5,7 @@ import model.Type;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.text.MessageFormat;
 import java.util.List;
 
@@ -79,12 +76,11 @@ public class AnimalDao {
      *
      * @return List of {@link Animal animals}
      */
-    @SuppressWarnings("unchecked")
     public List<Animal> getAnimals() {
 
         logger.info("Read animals from database.");
 
-        Query findAnimals = entityManager.createQuery("select animal from Animal animal", Animal.class);
+        TypedQuery<Animal> findAnimals = entityManager.createQuery("select animal from Animal animal", Animal.class);
 
         return findAnimals.getResultList();
     }
