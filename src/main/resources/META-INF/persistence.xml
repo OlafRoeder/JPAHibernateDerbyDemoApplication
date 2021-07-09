@@ -19,10 +19,11 @@
             <!-- Newer versions of Derby use the EmbeddedDriver per convention. Thus it is not necessary and even erroneous to specify the driver.-->
             <!--<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />-->
 
-            <!-- Create the database everytime the application is run (if not present).
+            <!-- Drop and create the database everytime the application is run.
             Only use in dev/test, for production use 'none' -->
             <property name="javax.persistence.jdbc.url" value="jdbc:derby:animals.db;create=true"/>
-            <property name="javax.persistence.schema-generation.database.action" value="create"/>
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <!--<property name="javax.persistence.schema-generation.database.action" value="none"/>-->
 
             <property name="javax.persistence.jdbc.user" value="test"/>
             <property name="javax.persistence.jdbc.password" value="test"/>

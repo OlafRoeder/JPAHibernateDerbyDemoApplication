@@ -28,16 +28,24 @@ repositories {
 dependencies {
 
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
-    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.31'
 
-    // https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12
-    implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.30'
-
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.14.1'
 
-    // https://mvnrepository.com/artifact/org.hibernate/hibernate-gradle-plugin
-    implementation group: 'org.hibernate', name: 'hibernate-gradle-plugin', version: '5.4.24.Final'
+    // module-info requires java.persistence needs this dependency
+    // https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api
+    implementation group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
+
+    // https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core
+    implementation group: 'org.hibernate', name: 'hibernate-core-jakarta', version: '5.5.3.Final'
+
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
+    implementation group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.5.3.Final'
 
     // https://mvnrepository.com/artifact/org.apache.derby/derby
     implementation group: 'org.apache.derby', name: 'derby', version: '10.15.2.0'
@@ -49,8 +57,9 @@ dependencies {
 
 application {
 
-    // Define the main class for the application.
-    mainClassName = 'application.Main'
+    // name defined in module-info.java
+    mainModule = 'Hibernate.JPA.Derby.Demo.Application.main'
+    mainClass = 'application.Main'
 
 }
 
