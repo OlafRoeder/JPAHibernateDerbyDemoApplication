@@ -2,11 +2,26 @@
 <Configuration status="error">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="[%c{5}][%t][%d{HH:mm:ss.SSS}]%level %msg%n"/>
+            <PatternLayout pattern="[%level][%c{1}][%t] %msg%n"/>
         </Console>
     </Appenders>
     <Loggers>
-        <Root level="debug">
+        <Logger name="application" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="concurrency" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="model" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="persistence" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="view" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Root level="error">
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
