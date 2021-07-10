@@ -41,9 +41,6 @@ dependencies {
     // https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api
     implementation group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
 
-    // https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core
-    implementation group: 'org.hibernate', name: 'hibernate-core-jakarta', version: '5.5.3.Final'
-
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
     implementation group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.5.3.Final'
 
