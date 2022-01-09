@@ -31,11 +31,11 @@ dependencies {
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.31'
 
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.15.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.17.1'
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.15.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.17.1'
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.15.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.17.1'
 
     // module-info requires java.persistence needs this dependency
     // https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api
