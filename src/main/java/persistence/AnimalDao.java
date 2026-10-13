@@ -5,7 +5,7 @@ import model.Type;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.text.MessageFormat;
 import java.util.List;
 

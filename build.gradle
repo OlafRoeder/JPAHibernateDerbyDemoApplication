@@ -1,26 +1,18 @@
 plugins {
-
-    // Apply the java plugin to add support for Java
     id 'java'
-
-    // Apply the application plugin to add support for building a CLI application.
     id 'application'
 
-    // Plugin to use JavaFX, provides the javafx task
-    // https://github.com/openjfx/javafx-gradle-plugin
+    // Configure platform-specific JavaFX modules and Lombok annotation processing.
     id 'org.openjfx.javafxplugin' version '0.1.0'
-
-    // https://plugins.gradle.org/plugin/io.freefair.lombok
-    id "io.freefair.lombok" version "8.10.2"
+    id 'io.freefair.lombok' version '9.8.0'
 }
 
-group 'de.olaf-roeder'
-version '0.1-DEVELOPER'
+group = 'de.olaf-roeder'
+version = '0.1-DEVELOPER'
 
-// LTS until September 2023
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(27)
     }
 }
 
@@ -28,44 +20,44 @@ repositories {
     mavenCentral()
 }
 
+lombok {
+    version = '1.18.48'
+}
+
 dependencies {
+    implementation 'org.slf4j:slf4j-api:2.0.20'
+    implementation platform('org.apache.logging.log4j:log4j-bom:2.26.1')
+    implementation 'org.apache.logging.log4j:log4j-api'
+    runtimeOnly 'org.apache.logging.log4j:log4j-core'
+    runtimeOnly 'org.apache.logging.log4j:log4j-slf4j2-impl'
 
-    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
-    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.17'
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.2.0'
+    implementation 'org.hibernate.orm:hibernate-core:7.4.13.Final'
+    // Derby support is maintained in Hibernate's community dialects module.
+    runtimeOnly 'org.hibernate.orm:hibernate-community-dialects:7.4.13.Final'
+    // Jakarta Transactions requires Interceptors and CDI on the module path.
+    runtimeOnly 'jakarta.interceptor:jakarta.interceptor-api:2.2.0'
+    runtimeOnly 'jakarta.enterprise:jakarta.enterprise.cdi-api:5.0.0'
+    runtimeOnly 'org.apache.derby:derby:10.17.1.0'
 
-    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.25.2'
-    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.25.2'
-    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j2-impl
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j2-impl', version: '2.25.2'
-
-    // module-info requires java.persistence needs this dependency
-    // https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api
-    implementation group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
-
-    // https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
-    implementation group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.5.3.Final'
-
-    // https://mvnrepository.com/artifact/org.apache.derby/derby
-    implementation group: 'org.apache.derby', name: 'derby', version: '10.15.2.0'
-
-    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.8.0-M1'
-
+    testImplementation platform('org.junit:junit-bom:6.1.3')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 application {
-
-    // name defined in module-info.java
+    // The module name must match module-info.java.
     mainModule = 'Hibernate.JPA.Derby.Demo.Application.main'
     mainClass = 'application.Main'
-
+    // Resolve Hibernate's runtime modules as well as JavaFX's native libraries.
+    applicationDefaultJvmArgs = ['--add-modules=ALL-MODULE-PATH', '--enable-native-access=javafx.graphics']
 }
 
 javafx {
-
-    version = '21'
+    version = '27'
     modules = ['javafx.controls', 'javafx.fxml', 'javafx.swing']
+}
 
+tasks.named('test') {
+    useJUnitPlatform()
 }
