@@ -11,7 +11,7 @@ module Hibernate.JPA.Derby.Demo.Application.main {
     requires java.persistence;
     requires java.sql;
 
-    requires hibernate.entitymanager;
+    requires org.hibernate.orm.core;
     requires net.bytebuddy;
     requires com.fasterxml.classmate;
     requires java.xml.bind;
