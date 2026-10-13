@@ -8,18 +8,21 @@ plugins {
 
     // Plugin to use JavaFX, provides the javafx task
     // https://github.com/openjfx/javafx-gradle-plugin
-    id 'org.openjfx.javafxplugin' version '0.0.10'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
 
     // https://plugins.gradle.org/plugin/io.freefair.lombok
-    id "io.freefair.lombok" version "6.0.0-m2"
+    id "io.freefair.lombok" version "8.10.2"
 }
 
 group 'de.olaf-roeder'
 version '0.1-DEVELOPER'
 
 // LTS until September 2023
-sourceCompatibility = 1.11
-targetCompatibility = 1.11
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
 
 repositories {
     mavenCentral()
@@ -28,14 +31,14 @@ repositories {
 dependencies {
 
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
-    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.31'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.17'
 
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.17.1'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.25.2'
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.17.1'
-    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.17.1'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.25.2'
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j2-impl
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j2-impl', version: '2.25.2'
 
     // module-info requires java.persistence needs this dependency
     // https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api
@@ -62,7 +65,7 @@ application {
 
 javafx {
 
-    version = '11'
+    version = '21'
     modules = ['javafx.controls', 'javafx.fxml', 'javafx.swing']
 
 }
