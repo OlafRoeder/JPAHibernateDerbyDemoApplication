@@ -8,13 +8,10 @@ module Hibernate.JPA.Derby.Demo.Application.main {
     requires org.slf4j;
     requires org.apache.logging.log4j;
 
-    requires java.persistence;
+    requires jakarta.persistence;
     requires java.sql;
 
-    requires hibernate.entitymanager;
-    requires net.bytebuddy;
-    requires com.fasterxml.classmate;
-    requires java.xml.bind;
+    requires org.hibernate.orm.core;
 
     exports application to javafx.graphics;
 
